@@ -119,23 +119,76 @@ alt="R=\left|\mathbf{r}-\mathbf{r}_{p}\right|=\sqrt{\left(x-x'\right)^{2}+\left(
 Substituting the past 3 equations into the [Kirchhoff-Helmholtz integral](https://en.wikipedia.org/wiki/Kirchhoff%E2%80%93Helmholtz_integral) results in the **Rayleigh integral** for the sound pressure field of a vibration source and a planar reflector:
 <div align=center>
 <img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cboxed%7Bp%28%5Cmathbf%7Br%7D%2C+%5Comega%29%3D%5Cfrac%7Bj+%5Crho_%7B0%7D+%5Comega%7D%7B2+%5Cpi%7D+%5Cint_%7BS_%7B1%7D%7D+%5Cfrac%7Bv_%7Bn%7D%5Cleft%28%5Cmathbf%7Br%7D_%7Bp%7D%2C+%5Comega%5Cright%29%7D%7BR%7D+%5Cmathrm%7Be%7D%5E%7B-j+k+R%7D+%5Cmathrm%7B%7Ed%7D+s%7D" 
-alt="\boxed{p(\mathbf{r}, \omega)=\frac{j \rho_{0} \omega}{2 \pi} \int_{S_{1}} \frac{v_{n}\left(\mathbf{r}_{p}, \omega\right)}{R} \mathrm{e}^{-j k R} \mathrm{~d} s}">
+"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cboxed%7Bp%28%5Cmathbf%7Br%7D%2C+%5Comega%29%3D%5Cfrac%7Bj+%5Crho_%7B0%7D+%5Comega%7D%7B2+%5Cpi%7D+%5Cint_%7BS_%7B1%7D%7D+%5Cfrac%7Bv_%7Bn%7D%5Cleft%28%5Cmathbf%7Br%7D_%7Bp%7D%2C+%5Comega%5Cright%29%7D%7BR%7D+%5Cmathrm%7Be%7D%5E%7B-j+k+R%7D+%5Cmathrm%7Bd%7D+s%7D" 
+alt="\boxed{p(\mathbf{r}, \omega)=\frac{j \rho_{0} \omega}{2 \pi} \int_{S_{1}} \frac{v_{n}\left(\mathbf{r}_{p}, \omega\right)}{R} \mathrm{e}^{-j k R} \mathrm{d} s}">
 </div>
 
 The **Rayleigh integral** is then solved using the matrix method outlined in the publication ["Matrix Method for Acoustic Levitation Simulation"](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation). Numerically, the **Rayleigh integral** is determined by discretizing the transducer and the reflector surfaces in small area cells, and multiplication of the transfer matrices gives the name of the matrix method.
 
 
 ## Setup and usage
-We recommend the usage of the [Anaconda distribution](https://www.anaconda.com/products/individual) and the included [Spyder IDE](https://www.spyder-ide.org/). Spyder is a unique Python IDE that offers a [MATLAB](https://www.mathworks.com/products/matlab.html)-like experience with an integrated variable viewer.
+I recommend the usage of the [Anaconda distribution](https://www.anaconda.com/products/individual) and the included [Spyder IDE](https://www.spyder-ide.org/). Spyder is a unique Python IDE that offers a [MATLAB](https://www.mathworks.com/products/matlab.html)-like experience with an integrated variable viewer.
 
 ### Package installation
 For required packages, refer to [`requirements.txt`](requirements.txt). The packages can be installed quickly using pip and/or in a virtual environment:
 ```
 pip install -r requirements.txt
 ```
-Or if using Anaconda:
+Or if using Anaconda the requirements are already included.
+
+### How to use
+
+*Make sure to make the main folder the console's working directory.*
+
+[`main.py`](main.py) is a script that generates a grid of 50mm by 50mm, with a flat circular transducer of radius `R = 10*mm`, and a flat reflector along the bottom of the grid. All modifiable parameters are indicated on lines 51-76:
+
 ```
-conda install pip
-pip install -r requirements.txt
+#%% Definition of grid and problem (modify for your needs)
+x_min = -50*mm
+x_max = 50*mm
+z_min = 0                               # Location of the reflector
+z_max = 50*mm                           # Location of the transducer
+disc = 0.25*mm 	                        # Discretization step size 
+
+# Define air constants
+rho = complex(1.214, 0)			            # Density of air in Raleigh, kg/m^3
+c = complex(340.1, 0)			              # Speed of sound in air, m/s
+
+# Define transducer parameters
+R = 10*mm 		                          # Transducer radius, m
+A_trans = complex(np.pi*R**2, 0)		    # Transducer area, m^2
+f = complex(56000, 0)			              # Frequency, Hz
+U_0 = 0.0000060                         # Displacement amplitude, m
+
+# Define reflector parameters
+A_refl = complex(np.pi*(x_max/2)**2, 0) # Reflector area, m^2
+
+# Constants
+wavelength = complex(c/f, 0)		        # Wavelength, m
+omega = complex(2*np.pi*f, 0)		        # Angular frequency, rad/s
+wavenumber = omega/c			              # Wavenumber - k
+E = complex(0, 1)/wavelength		        # Constant used for reflected waves
+D = (omega*rho*c)/wavelength		        # Constant used for transmitted wave
 ```
+
+The script calculates the distance arrays shown in [figure 1 of the publication](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `r_nm`, `r_im`, and `r_in` on lines 89-114. The transfer matricies of [eq. (2) and eqs.(4-6)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `T_TM`,`T_TR`,`T_RT`, and `T_RM` are calculated on lines 121-152. The pressure calculation of [eq. (3)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `P` is transcribed identically (up to the 4th order of accuracy) on lines 159-163.
+
+At the end, two plots are created showing the acoustic pressure as a function of spatial Z versus spatial X. 
+
+![Image of continuous plot](https://github.com/slkiser/acousticLevitation/blob/main/continuous.png)
+
+![Image of contour plot](https://github.com/slkiser/acousticLevitation/blob/main/contour.png)
+
+___
+
+## Acknowledgments
+
+This research was part of a PhD thesis funded by [Arts et Métiers](https://artsetmetiers.fr/) (École nationale supérieure d'arts et métiers). Laboratory equipment was provided by H2020 FastMat (fast determination of fatigue properties of materials beyond one billion cycles) project under the European Research Council (ERC) (grant agreement No 725142) at [PIMM laboratory](https://pimm.artsetmetiers.fr/).
+
+![Image of logos](https://github.com/slkiser/lineSpectraVibration/blob/main/logo.png)
+
+## License
+
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
