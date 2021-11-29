@@ -157,10 +157,10 @@ for i in range(N):
     U[i] = U_0*np.exp(complex(0, omega))
 
 #%% Calculation of pressure, where each line is an order of approximation
-P = (D*E)*T_RM * \
-    (T_TR*U)+(D*E**2) * \
-        (T_TM*T_RT)*(T_TR*U)+(D*E**3)*T_RM * \
-            (T_TR*T_RT)*(T_TR*U)+(D*E**4)*(T_TM*T_RT)*(T_TR*T_RT)*(T_TR*U) 
+P = D * T_TM * U + \
+    (D*E**2) * (T_TM*T_RT) * (T_TR*U) + \
+            (D*E**3) * T_RM * (T_TR*T_RT) * (T_TR*U)+\
+                (D*E**4)*(T_TM*T_RT)*(T_TR*T_RT)*(T_TR*U)
 
 # Reshape of numpy array with vertical Z and horizontal X
 P2 = np.array(np.reshape(P, (len(x), len(z))))
