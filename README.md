@@ -83,8 +83,8 @@ at the boundary surface (when <img src="https://render.githubusercontent.com/ren
 
 <div align=center>
 <img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%5E%7B%5Cprime%7D%5Cright%29%3D%5Cfrac%7B1%7D%7B4+%5Cpi%7D%5Cleft%28%5Cfrac%7B%5Cmathrm%7Be%7D%5E%7B-j+k+R_%7B%2B%7D%7D%7D%7BR_%7B%2B%7D%7D%2B%5Cfrac%7B%5Cmathrm%7Be%7D%5E%7B-j+k+R_%7B-%7D%7D%7D%7BR_%7B-%7D%7D%5Cright%29" 
-alt="G\left(\mathbf{r} \mid \mathbf{r}^{\prime}\right)=\frac{1}{4 \pi}\left(\frac{\mathrm{e}^{-j k R_{+}}}{R_{+}}+\frac{\mathrm{e}^{-j k R_{-}}}{R_{-}}\right)">
+"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29%3D%5Cfrac%7B1%7D%7B4+%5Cpi%7D%5Cleft%28%5Cfrac%7B%5Cmathrm%7Be%7D%5E%7B-j+k+R_%7B%2B%7D%7D%7D%7BR_%7B%2B%7D%7D%2B%5Cfrac%7B%5Cmathrm%7Be%7D%5E%7B-j+k+R_%7B-%7D%7D%7D%7BR_%7B-%7D%7D%5Cright%29" 
+alt="G\left(\mathbf{r} \mid \mathbf{r}'\right)=\frac{1}{4 \pi}\left(\frac{\mathrm{e}^{-j k R_{+}}}{R_{+}}+\frac{\mathrm{e}^{-j k R_{-}}}{R_{-}}\right)">
 </div>
 where:
 
