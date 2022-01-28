@@ -3,7 +3,7 @@
 # Matrix method in Python for acoustic levitation simulations
 <a href="https://www.codefactor.io/repository/github/slkiser/acousticlevitation"><img src="https://www.codefactor.io/repository/github/slkiser/acousticlevitation/badge" alt="CodeFactor" /></a> <img alt="GitHub" src="https://img.shields.io/github/license/slkiser/acousticLevitation"> <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fslkiser%2FacousticLevitation&count_bg=%23FFB031&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/> <a href="https://www.linkedin.com/in/shawn-kiser/"> <img src="https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin&labelColor=grey"></a>
 
-This repository implements the matrix method used in the publication ["Matrix Method for Acoustic Levitation Simulation"](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation). Specifically, the results of Section II are written in Python, which describes an acoustic levitator composed of only one circular flat transducer and one planar reflector.
+This repository implements the matrix method used in the publication ["Matrix Method for Acoustic Levitation Simulation"](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation). Specifically, the results of Section II are written in Python, which describes an acoustic levitator composed of only one circular flat transducer (and with a hole if needed) and one planar reflector.
 
 This [README](README.md) consists of an introduction and theory which derives the **Rayleigh integral equation** used in the publication. This integral is then numerically resolved using the matrix method used in the publication. The matrix method offers an advantage over traditional [numerical integration](https://en.wikipedia.org/wiki/Numerical_integration) for two-dimensional (2D) problems, e.g., the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule) (1st order approximation) & [Simpson's rule](https://en.wikipedia.org/wiki/Simpson%27s_rule) (2nd order approximation), by obtaining a higher order of accuracy at a lower computation cost.
 
@@ -142,7 +142,7 @@ Or if using Anaconda the requirements are already included.
 
 *Make sure to make the main folder the console's working directory.*
 
-[`main.py`](main.py) is a script that generates a grid of 50mm by 50mm, with a flat circular transducer of radius `R = 10*mm`, and a flat reflector along the bottom of the grid. All modifiable parameters are indicated on lines 51-76:
+[`main.py`](main.py) is a script that generates a grid of 50mm by 50mm, with a flat circular transducer of radius `R = 15*mm` with hole `R2=2*mm`, and a flat reflector along the bottom of the grid. All modifiable parameters are indicated on lines 51-76:
 
 ```
 #%% Definition of grid and problem (modify for your needs)
@@ -150,30 +150,32 @@ x_min = -50*mm
 x_max = 50*mm
 z_min = 0                               # Location of the reflector
 z_max = 50*mm                           # Location of the transducer
-disc = 0.25*mm 	                        # Discretization step size 
+disc = 0.5*mm 	                        # Discretization step size 
 
 # Define air constants
-rho = complex(1.214, 0)			            # Density of air in Raleigh, kg/m^3
-c = complex(340.1, 0)			              # Speed of sound in air, m/s
+rho = complex(1.214, 0)			        # Density of air in Raleigh, kg/m^3
+c = complex(340.1, 0)			        # Speed of sound in air, m/s
 
 # Define transducer parameters
-R = 10*mm 		                          # Transducer radius, m
-A_trans = complex(np.pi*R**2, 0)		    # Transducer area, m^2
-f = complex(56000, 0)			              # Frequency, Hz
+R = 15*mm 		                        # Transducer radius, m
+A_trans = complex(np.pi*R**2, 0)		# Transducer area, m^2
+R2 = 2*mm                               # Trandsucer hole, m
+A_hole = complex(np.pi*R2**2, 0)        # Trandsucer hole area, m^2
+f = complex(56000, 0)			        # Frequency, Hz
 U_0 = 0.0000060                         # Displacement amplitude, m
 
 # Define reflector parameters
 A_refl = complex(np.pi*(x_max/2)**2, 0) # Reflector area, m^2
 
 # Constants
-wavelength = complex(c/f, 0)		        # Wavelength, m
-omega = complex(2*np.pi*f, 0)		        # Angular frequency, rad/s
-wavenumber = omega/c			              # Wavenumber - k
-E = complex(0, 1)/wavelength		        # Constant used for reflected waves
-D = (omega*rho*c)/wavelength		        # Constant used for transmitted wave
+wavelength = complex(c/f, 0)		    # Wavelength, m
+omega = complex(2*np.pi*f, 0)		    # Angular frequency, rad/s
+wavenumber = omega/c			        # Wavenumber - k
+E = complex(0, 1)/wavelength		    # Constant used for reflected waves
+D = (omega*rho*c)/wavelength		    # Constant used for transmitted wave
 ```
 
-The script calculates the distance arrays shown in [figure 1 of the publication](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `r_nm`, `r_im`, and `r_in` on lines 89-114. The transfer matrices of [eq. (2) and eqs.(4-6)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `T_TM`,`T_TR`,`T_RT`, and `T_RM` are calculated on lines 121-152. The pressure calculation of [eq. (3)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `P` is transcribed identically (up to the 4th order of accuracy) on lines 159-163.
+The script calculates the distance arrays shown in [figure 1 of the publication](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `r_nm`, `r_im`, and `r_in` on lines 92-116. The transfer matrices of [eq. (2) and eqs.(4-6)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `T_TM`,`T_TR`,`T_RT`, and `T_RM` are calculated on lines 125-158. The pressure calculation of [eq. (3)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `P` is transcribed identically (up to the 4th order of accuracy) on lines 166-170.
 
 In the end, two plots are created showing the acoustic pressure as a function of spatial Z versus spatial X. 
 

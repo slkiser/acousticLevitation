@@ -53,15 +53,17 @@ x_min = -50*mm
 x_max = 50*mm
 z_min = 0                               # Location of the reflector
 z_max = 50*mm                           # Location of the transducer
-disc = 0.25*mm 	                        # Discretization step size 
+disc = 0.5*mm 	                        # Discretization step size 
 
 # Define air constants
 rho = complex(1.214, 0)			        # Density of air in Raleigh, kg/m^3
 c = complex(340.1, 0)			        # Speed of sound in air, m/s
 
 # Define transducer parameters
-R = 10*mm 		                        # Transducer radius, m
+R = 15*mm 		                        # Transducer radius, m
 A_trans = complex(np.pi*R**2, 0)		# Transducer area, m^2
+R2 = 2*mm                               # Trandsucer hole, m
+A_hole = complex(np.pi*R2**2, 0)        # Trandsucer hole area, m^2
 f = complex(56000, 0)			        # Frequency, Hz
 U_0 = 0.0000060                         # Displacement amplitude, m
 
@@ -117,6 +119,7 @@ r_ni = r_in.T
 cells = complex(100, 0)			        # Number of discrete cells
 sn = A_trans/cells			            # Unit cell area for transducer
 si = A_refl/(cells*4)                   # Unit cell area for reflector
+sh = A_hole/cells                       # Unit cell area for transducer hole
 
 # Create zeroed transfer matrices in memory
 T_TM = np.matrix(np.zeros((N, M)), dtype=complex)
@@ -127,12 +130,15 @@ T_RM = np.matrix(np.zeros((L, M)), dtype=complex)
 # Calculate transfer matrices
 for i in range(N):
     for j in range(M):
-        T_TM[i, j] = (sn*np.exp(complex(0, -1) *
-                                wavenumber*r_nm[i, j]))/r_nm[i, j]
-
+        T_TM[i, j] = ((sn*np.exp(complex(0, -1) *
+                                wavenumber*r_nm[i, j]))/r_nm[i, j]) - \
+                     ((sh*np.exp(complex(0, -1) *
+                                wavenumber*r_nm[i, j]))/r_nm[i, j])
     for k in range(L):
-        T_TR[i, k] = (sn*np.exp(complex(0, -1) *
-                                wavenumber*r_in[i, k]))/r_in[i, k]
+        T_TR[i, k] = ((sn*np.exp(complex(0, -1) *
+                                wavenumber*r_in[i, k]))/r_in[i, k]) - \
+                     ((sh*np.exp(complex(0, -1) *
+                                wavenumber*r_in[i, k]))/r_in[i, k])
 
 for i in range(L):
     for j in range(N):
@@ -158,10 +164,11 @@ for i in range(N):
 
 #%% Calculation of pressure, where each line is an order of approximation
 P = D * T_TM * U + \
-    (D*E**2) * (T_TM*T_RT) * (T_TR*U) + \
+    (D*E) * (T_RM*T_TR) * U + \
+        (D*E**2) * (T_TM*T_RT) * (T_TR*U) + \
             (D*E**3) * T_RM * (T_TR*T_RT) * (T_TR*U)+\
                 (D*E**4)*(T_TM*T_RT)*(T_TR*T_RT)*(T_TR*U)
-
+    
 # Reshape of numpy array with vertical Z and horizontal X
 P2 = np.array(np.reshape(P, (len(x), len(z))))
 P2 = np.transpose(P2)
