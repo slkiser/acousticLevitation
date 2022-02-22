@@ -138,6 +138,12 @@ pip install -r requirements.txt
 ```
 Or if using Anaconda the requirements are already included.
 
+### Validation
+[`validation.py`](validation.py) is a script that recreated Fig. 2 (a) in [1]. It creates a grid of 18mm by 40mm, with a flat circular transducer of radius `R = 5*mm`, and a flat reflector along the bottom of the grid. A side by side comparison is presented:
+Original plot, Fig 2 (a) of [1]            |  [`validation.py`](validation.py)
+:-------------------------:|:-------------------------:
+![Image of original plot](https://github.com/slkiser/acousticLevitation/blob/main/fig%202a.png)  |  ![Image of recreated plot](https://github.com/slkiser/acousticLevitation/blob/main/validation.png)
+
 ### How to use
 
 *Make sure to make the main folder the console's working directory.*
