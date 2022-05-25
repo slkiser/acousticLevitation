@@ -181,7 +181,7 @@ E = complex(0, 1)/wavelength		    # Constant used for reflected waves
 D = (omega*rho*c)/wavelength		    # Constant used for transmitted wave
 ```
 
-The script calculates the distance arrays shown in [figure 1 of the publication](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `r_nm`, `r_im`, and `r_in` on lines 92-116. The transfer matrices of [eq. (2) and eqs.(4-6)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `T_TM`,`T_TR`,`T_RT`, and `T_RM` are calculated on lines 125-158. The pressure calculation of [eq. (3)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `P` is transcribed identically (up to the 4th order of accuracy) on lines 166-170.
+The script calculates the distance arrays shown in [figure 1 of the publication](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `r_nm`, `r_im`, and `r_in` on lines 92-116. The transfer matrices of [eq. (2) and eqs.(4-6)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `T_TM`,`T_TR`,`T_RT`, and `T_RM` are calculated on lines 125-158. The pressure calculation of [eq. (3)](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation) `P` is transcribed identically (up to the 4th reflected wave) on lines 166-170.
 
 In the end, two plots are created showing the acoustic pressure as a function of spatial Z versus spatial X. 
 
