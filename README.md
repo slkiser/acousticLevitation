@@ -24,7 +24,7 @@ In its most general form, the integral equation is attributable to Kirchhoff, al
 
 Rayleigh modified the [Kirchhoff-Helmholtz integral equation](https://en.wikipedia.org/wiki/Kirchhoff%E2%80%93Helmholtz_integral) for the specific case of a planar source located in an infinite baffle and illustrated that it is equivalent to a distribution of point sources. This modification named the  **Rayleigh integral equation** is outlined in the following subsection.
 
-### Theory
+### Theory (need to view on white background)
 The nature of **steady-state sound fields** in presence of boundaries (surfaces) is described by the [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 <div align=center> <img src="https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cnabla%5E%7B2%7D+p%2Bk%5E%7B2%7D+p%3D0"> </div>
