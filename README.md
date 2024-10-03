@@ -27,103 +27,84 @@ Rayleigh modified the [Kirchhoff-Helmholtz integral equation](https://en.wikiped
 ### Theory (need to view on white background)
 The nature of **steady-state sound fields** in presence of boundaries (surfaces) is described by the [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
-<div align=center> <img src="https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cnabla%5E%7B2%7D+p%2Bk%5E%7B2%7D+p%3D0"> </div>
+```math
+\large \nabla^2 p + k^2 p = 0
+```
 
-To describe the sound pressure  <img src=
-"https://render.githubusercontent.com/render/math?math=%5Ctextstyle+p%28%5Cmathbf%7Br%7D%2C%5Comega%29" 
-alt="p(\mathbf{r},\omega)"> in [polar coordinates](https://ocw.mit.edu/courses/aeronautics-and-astronautics/16-07-dynamics-fall-2009/lecture-notes/MIT16_07F09_Lec05.pdf) due to the boundary vibration and reflection, a [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) is used to satisfy the following equation:
+To describe the sound pressure  $$p(\mathbf{r},\omega)$$ in [polar coordinates](https://ocw.mit.edu/courses/aeronautics-and-astronautics/16-07-dynamics-fall-2009/lecture-notes/MIT16_07F09_Lec05.pdf) due to the boundary vibration and reflection, a [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) is used to satisfy the following equation:
 
-<div align=center> <img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cnabla%5E%7B2%7D+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29%2Bk%5E%7B2%7D+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29%3D-%5Cdelta%5Cleft%28%5Cmathbf%7Br%7D-%5Cmathbf%7Br%7D%27%5Cright%29" 
-alt="\nabla^{2} G\left(\mathbf{r} \mid \mathbf{r}'\right)+k^{2} G\left(\mathbf{r} \mid \mathbf{r}'\right)=-\delta\left(\mathbf{r}-\mathbf{r}'\right)"></div>
+```math
+\nabla^{2} G\left(\mathbf{r} \mid \mathbf{r}'\right)+k^{2} G\left(\mathbf{r} \mid \mathbf{r}'\right)=-\delta\left(\mathbf{r}-\mathbf{r}'\right)
+```
 
 Kirchhoff obtained the solution by substituting both previous equations for sound pressure in the integral form (the [Kirchhoff-Helmholtz integral](https://en.wikipedia.org/wiki/Kirchhoff%E2%80%93Helmholtz_integral)):
 
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+p%28%5Cmathbf%7Br%7D%2C+%5Comega%29%3D%5Coint_%7Bs%7D%5Cleft%5BG%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29+%5Cfrac%7B%5Cpartial+p%7D%7B%5Cpartial+n%27%7D-p%5Cleft%28%5Cmathbf%7Br%7D%27%2C+%5Comega%5Cright%29+%5Cfrac%7B%5Cpartial+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29%7D%7B%5Cpartial+n%27%7D%5Cright%5D+%5Cmathrm%7Bd%7D+s%27" 
-alt="p(\mathbf{r}, \omega)=\oint_{s}\left[G\left(\mathbf{r} \mid \mathbf{r}'\right) \frac{\partial p}{\partial n'}-p\left(\mathbf{r}', \omega\right) \frac{\partial G\left(\mathbf{r} \mid \mathbf{r}'\right)}{\partial n'}\right] \mathrm{d} s'">
-</div>
+```math
+p(\mathbf{r}, \omega)=\oint_{s}\left[G\left(\mathbf{r} \mid \mathbf{r}'\right) \frac{\partial p}{\partial n'}-p\left(\mathbf{r}', \omega\right) \frac{\partial G\left(\mathbf{r} \mid \mathbf{r}'\right)}{\partial n'}\right] \mathrm{d} s'
+```
 
-where <img src="https://render.githubusercontent.com/render/math?math=%5Ctextstyle+%5Cpartial+p+%2F+%5Cpartial+n%27" alt="\partial p / \partial n'">represents the gradient on the boundary surface (outward positive from the sound generation).
+where $$\partial p / \partial n'$$ represents the gradient on the boundary surface (outward positive from the sound generation).
 
-The boundary conditions about the plate, <img src=
-"https://render.githubusercontent.com/render/math?math=%5Ctextstyle+S_1" 
-alt="S_1">, and the rigid reflector, <img src=
-"https://render.githubusercontent.com/render/math?math=%5Ctextstyle+S_2" 
-alt="S_2">, are:
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cmathbf%7Bv%7D_%7BB%7D%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bcl%7D%0A%5Cmathbf%7Bv%7D_%7Bn%7D%5Cleft%28%5Cmathbf%7Br%7D_%7Bp%7D%2C+%5Comega%5Cright%29+%5Cmathrm%7Be%7D%5E%7Bj+%5Comega+t%7D+%26+%5Cmathbf%7Br%7D_%7Bp%7D%3D%5Cleft%28x%27%2C+y%27%5Cright%29+%5Cin+S_%7B1%7D+%5C%5C%0A0+%26+%5Cmathbf%7Br%7D_%7Bp%7D%3D%5Cleft%28x%27%2C+y%27%5Cright%29+%5Cin+S_%7B2%7D%0A%5Cend%7Barray%7D%5Cright." 
-alt="\mathbf{v}_{B}=\left\{\begin{array}{cl}
-\mathbf{v}_{n}\left(\mathbf{r}_{p}, \omega\right) \mathrm{e}^{j \omega t} & \mathbf{r}_{p}=\left(x', y'\right) \in S_{1} \\
-0 & \mathbf{r}_{p}=\left(x', y'\right) \in S_{2}
-\end{array}\right.">
-</div>
+The boundary conditions about the plate, $$S_1$$, and the rigid reflector, $$S_2$$, are:
 
-where the polar velocity is <img src="https://render.githubusercontent.com/render/math?math=%5Ctextstyle+%5Cmathbf%7Bv%7D%3Dd%5Cmathbf%7Br%7D%2Fdt" alt="\mathbf{v}=d\mathbf{r}/dt">.
+```math
+\mathbf{v}_{B} = 
+\begin{cases} 
+\mathbf{v}_{n}\left(\mathbf{r}_{p}, \omega\right) \mathrm{e}^{j \omega t} & \text{if } \mathbf{r}_{p}=\left(x', y'\right) \in S_{1} \\ 
+0 & \text{if } \mathbf{r}_{p}=\left(x', y'\right) \in S_{2} 
+\end{cases}
+```
+
+where the polar velocity is $$\mathbf{v}=d\mathbf{r}/dt$$.
 
 By applying [Euler's equation](https://en.wikipedia.org/wiki/Euler_equations_(fluid_dynamics)), or a **balance of momentum** ([Newton's second law](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton's_second_law)), the pressure gradient on the boundary surface is equal to the boundary vibration velocity:
 
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cfrac%7B%5Cpartial+p%7D%7B%5Cpartial+n%27%7D%3Dj+%5Crho_%7B0%7D+%5Comega+%5Cmathbf%7Bv%7D_%7BB%7D" 
-alt="\frac{\partial p}{\partial n'}=j \rho_{0} \omega \mathbf{v}_{B}">
-</div>
+```math
+\frac{\partial p}{\partial n'}=j \rho_{0} \omega \mathbf{v}_{B}
+```
 
 For this boundary, a [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) is needed to satisfy:
 
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cfrac%7B%5Cpartial+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29%7D%7B%5Cpartial+n%27%7D%3D0" 
-alt="\frac{\partial G\left(\mathbf{r} \mid \mathbf{r}'\right)}{\partial n'}=0">
-</div>
+```math
+\frac{\partial G\left(\mathbf{r} \mid \mathbf{r}'\right)}{\partial n'}=0
+```
 
-at the boundary surface (when <img src="https://render.githubusercontent.com/render/math?math=%5Ctextstyle+z%3D0" alt="z=0"> ). The [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) selected by Rayleigh is:
+at the boundary surface (when $$z=0$$ ). The [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) selected by Rayleigh is:
 
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29%3D%5Cfrac%7B1%7D%7B4+%5Cpi%7D%5Cleft%28%5Cfrac%7B%5Cmathrm%7Be%7D%5E%7B-j+k+R_%7B%2B%7D%7D%7D%7BR_%7B%2B%7D%7D%2B%5Cfrac%7B%5Cmathrm%7Be%7D%5E%7B-j+k+R_%7B-%7D%7D%7D%7BR_%7B-%7D%7D%5Cright%29" 
-alt="G\left(\mathbf{r} \mid \mathbf{r}'\right)=\frac{1}{4 \pi}\left(\frac{\mathrm{e}^{-j k R_{+}}}{R_{+}}+\frac{\mathrm{e}^{-j k R_{-}}}{R_{-}}\right)">
-</div>
+```math
+G\left(\mathbf{r} \mid \mathbf{r}'\right)=\frac{1}{4 \pi}\left(\frac{\mathrm{e}^{-j k R_{+}}}{R_{+}}+\frac{\mathrm{e}^{-j k R_{-}}}{R_{-}}\right)
+```
 where:
 
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cbegin%7Barray%7D%7Bl%7D%0AR_%7B%2B%7D%3D%5Csqrt%7B%5Cleft%28x-x%27%5Cright%29%5E%7B2%7D%2B%5Cleft%28y-y%27%5Cright%29%5E%7B2%7D%2B%5Cleft%28z-z%27_%7B%2B%7D%5Cright%29%5E%7B2%7D%7D+%5C%5C%0AR_%7B-%7D%3D%5Csqrt%7B%5Cleft%28x-x%27%5Cright%29%5E%7B2%7D%2B%5Cleft%28y-y%27%5Cright%29%5E%7B2%7D%2B%5Cleft%28z%2Bz%27_%7B-%7D%5Cright%29%5E%7B2%7D%7D%0A%5Cend%7Barray%7D" 
-alt="\begin{array}{l}
+```math
+\begin{array}{l}
 R_{+}=\sqrt{\left(x-x'\right)^{2}+\left(y-y'\right)^{2}+\left(z-z'_{+}\right)^{2}} \\
 R_{-}=\sqrt{\left(x-x'\right)^{2}+\left(y-y'\right)^{2}+\left(z+z'_{-}\right)^{2}}
-\end{array}">
-</div>
+\end{array}
+```
 
-with <img src="https://render.githubusercontent.com/render/math?math=%5Ctextstyle+z%27_%7B%2B%7D+" alt="z'_{+} "> and <img src="https://render.githubusercontent.com/render/math?math=%5Ctextstyle++z%27_%7B-%7D" alt=" z'_{-}"> being small positive and negative perturbations in the Z direction. This [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) has a zero gradient on the boundary of <img src="https://render.githubusercontent.com/render/math?math=%5Ctextstyle+z%3D0" alt="z=0">:
+with $$z'_{+}$$ and $$z'_{-}$$ being small positive and negative perturbations in the $$Z$$ direction. This [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) has a zero gradient on the boundary of $$z=0$$:
 
-<div align=center>
-<img src="https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cleft.%5Cfrac%7B%5Cpartial+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D%27%5Cright%29%7D%7B%5Cpartial+z%27%7D%5Cright%7C_%7B%5C%7Bz%27_%7B%2B%7D%2C+z%27_%7B-%7D%5C%7D%5Crightarrow+0%7D%3D0" alt="\left.\frac{\partial G\left(\mathbf{r} \mid \mathbf{r}'\right)}{\partial z'}\right|_{\{z'_{+}, z'_{-}\}\rightarrow 0}=0"></div>
+```math
+\left.\frac{\partial G\left(\mathbf{r} \mid \mathbf{r}'\right)}{\partial z'}\right|_{\{z'_{+}, z'_{-}\}\rightarrow 0}=0
+```
 
-and when the sources are limited to the boundary surface <img src= "https://render.githubusercontent.com/render/math?math=%5Ctextstyle+%5Cmathbf%7Br%7D%27%5Crightarrow+%5Cmathbf%7Br%7D_%7Bp%7D" alt="\mathbf{r}'\rightarrow \mathbf{r}_{p}">, Rayleigh gets the second Green's function:
+and when the sources are limited to the boundary surface $$\mathbf{r}'\rightarrow \mathbf{r}_{p}$$, Rayleigh gets the second Green's function:
 
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+G%5Cleft%28%5Cmathbf%7Br%7D+%5Cmid+%5Cmathbf%7Br%7D_%7Bp%7D%5Cright%29%3D%5Cfrac%7B1%7D%7B2+%5Cpi%7D+%5Cfrac%7B%5Cmathrm%7Be%7D%5E%7B-j+k+R%7D%7D%7BR%7D" 
-alt="G\left(\mathbf{r} \mid \mathbf{r}_{p}\right)=\frac{1}{2 \pi} \frac{\mathrm{e}^{-j k R}}{R}">
-</div>
+```math
+G\left(\mathbf{r} \mid \mathbf{r}_{p}\right)=\frac{1}{2 \pi} \frac{\mathrm{e}^{-j k R}}{R}
+```
 
 where:
 
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+R%3D%5Cleft%7C%5Cmathbf%7Br%7D-%5Cmathbf%7Br%7D_%7Bp%7D%5Cright%7C%3D%5Csqrt%7B%5Cleft%28x-x%27%5Cright%29%5E%7B2%7D%2B%5Cleft%28y-y%27%5Cright%29%5E%7B2%7D%2Bz%5E%7B2%7D%7D" 
-alt="R=\left|\mathbf{r}-\mathbf{r}_{p}\right|=\sqrt{\left(x-x'\right)^{2}+\left(y-y'\right)^{2}+z^{2}}">
-</div>
+```math
+R=\left|\mathbf{r}-\mathbf{r}_{p}\right|=\sqrt{\left(x-x'\right)^{2}+\left(y-y'\right)^{2}+z^{2}}
+```
 
 Substituting the past 3 equations into the [Kirchhoff-Helmholtz integral](https://en.wikipedia.org/wiki/Kirchhoff%E2%80%93Helmholtz_integral) results in the **Rayleigh integral** for the sound pressure field of a vibration source and a planar reflector:
-<div align=center>
-<img src=
-"https://render.githubusercontent.com/render/math?math=%5Clarge+%5Cdisplaystyle+%5Cboxed%7Bp%28%5Cmathbf%7Br%7D%2C+%5Comega%29%3D%5Cfrac%7Bj+%5Crho_%7B0%7D+%5Comega%7D%7B2+%5Cpi%7D+%5Cint_%7BS_%7B1%7D%7D+%5Cfrac%7Bv_%7Bn%7D%5Cleft%28%5Cmathbf%7Br%7D_%7Bp%7D%2C+%5Comega%5Cright%29%7D%7BR%7D+%5Cmathrm%7Be%7D%5E%7B-j+k+R%7D+%5Cmathrm%7Bd%7D+s%7D" 
-alt="\boxed{p(\mathbf{r}, \omega)=\frac{j \rho_{0} \omega}{2 \pi} \int_{S_{1}} \frac{v_{n}\left(\mathbf{r}_{p}, \omega\right)}{R} \mathrm{e}^{-j k R} \mathrm{d} s}">
-</div>
+```math
+\boxed{p(\mathbf{r}, \omega)=\frac{j \rho_{0} \omega}{2 \pi} \int_{S_{1}} \frac{v_{n}\left(\mathbf{r}_{p}, \omega\right)}{R} \mathrm{e}^{-j k R} \mathrm{d} s}
+```
 
 The **Rayleigh integral** is then solved using the matrix method outlined in the publication ["Matrix Method for Acoustic Levitation Simulation"](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation). Numerically, the **Rayleigh integral** is determined by discretizing the transducer and the reflector surfaces in small area cells, and multiplication of the transfer matrices gives the name of the matrix method.
 
