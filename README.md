@@ -7,7 +7,9 @@ This repository implements the matrix method used in the publication ["Matrix Me
 
 This [README](README.md) consists of an introduction and theory which derives the **Rayleigh integral equation** used in the publication. This integral is then numerically resolved using the matrix method used in the publication. The matrix method offers an advantage over traditional [numerical integration](https://en.wikipedia.org/wiki/Numerical_integration) for two-dimensional (2D) problems, e.g., the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule) (1st order approximation) & [Simpson's rule](https://en.wikipedia.org/wiki/Simpson%27s_rule) (2nd order approximation), by obtaining a higher order of accuracy at a lower computation cost.
 
-If you use this code, please cite this work:
+**Attribution Note:** The core Python implementation of the matrix method in this repository is based on the work of [Scott Sexton (ss32)](https://gitlab.com/ss32/acoustic-levitation). This repository extends that original work by adding logic for transducers with holes, providing detailed documentation, and adding a validation case against experimental literature.
+
+If you use this extended code/documentation, please cite this work:
 > [1] S. L. Kiser, Matrix method in Python for acoustic levitation simulations. [Online]. Available: https://github.com/slkiser/acousticLevitation
 
 ## Introduction
@@ -177,6 +179,8 @@ ___
 This research was part of a PhD thesis funded by [Arts et Métiers](https://artsetmetiers.fr/) (École nationale supérieure d'arts et métiers). Laboratory equipment was provided by H2020 FastMat (fast determination of fatigue properties of materials beyond one billion cycles) project under the European Research Council (ERC) (grant agreement No 725142) at [PIMM laboratory](https://pimm.artsetmetiers.fr/).
 
 ![Image of logos](https://github.com/slkiser/lineSpectraVibration/blob/main/logo.png)
+
+Original implementation of the matrix method logic by [Scott Sexton (ss32)](https://gitlab.com/ss32/acoustic-levitation).
 
 ## License
 

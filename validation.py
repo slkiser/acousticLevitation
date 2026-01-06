@@ -17,7 +17,10 @@
 %     method for acoustic levitation simulation,” IEEE Trans. Ultrason., 
 %     Ferroelect., Freq. Contr., vol. 58, no. 8, pp. 1674–1683, Aug. 2011, 
 %     doi: 10.1109/TUFFC.2011.199.
-
+%
+% Original Implementation:
+% This code is a refactor and extension of the implementation by Scott Sexton (ss32).
+% Original source: https://gitlab.com/ss32/acoustic-levitation
 %
 %=============================================================================
 % The MIT License (MIT)

@@ -16,7 +16,10 @@
 %     method for acoustic levitation simulation,” IEEE Trans. Ultrason., 
 %     Ferroelect., Freq. Contr., vol. 58, no. 8, pp. 1674–1683, Aug. 2011, 
 %     doi: 10.1109/TUFFC.2011.199.
-
+%
+% Original Implementation:
+% This code is a refactor and extension of the implementation by Scott Sexton (ss32).
+% Original source: https://gitlab.com/ss32/acoustic-levitation
 %
 %=============================================================================
 % The MIT License (MIT)
@@ -119,7 +122,7 @@ r_ni = r_in.T
 cells = complex(100, 0)			        # Number of discrete cells
 sn = A_trans/cells			            # Unit cell area for transducer
 si = A_refl/(cells*4)                   # Unit cell area for reflector
-sh = A_hole/cells                       # Unit cell area for transducer hole
+sh = complex(0, 0)                      
 
 # Create zeroed transfer matrices in memory
 T_TM = np.matrix(np.zeros((N, M)), dtype=complex)
@@ -160,7 +163,7 @@ T_RM = T_RM.T
 #%% Boundary conditions of transducer
 U = np.array(np.zeros((N, 1)), dtype=complex)
 for i in range(N):
-    U[i] = U_0*np.exp(complex(0, omega))
+    U[i] = 0 if np.abs(transducer[i]) < R2 else U_0*np.exp(complex(0, omega)) 
 
 #%% Calculation of pressure, where each line is an order of approximation
 P = D * T_TM * U + \
