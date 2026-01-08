@@ -1,7 +1,8 @@
 <div id="top"></div>
 
 # Matrix method in Python for acoustic levitation simulations
-<a href="https://www.codefactor.io/repository/github/slkiser/acousticlevitation"><img src="https://www.codefactor.io/repository/github/slkiser/acousticlevitation/badge" alt="CodeFactor" /></a> <img alt="GitHub" src="https://img.shields.io/github/license/slkiser/acousticLevitation"> <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fslkiser%2FacousticLevitation&count_bg=%23FFB031&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/> <a href="https://www.linkedin.com/in/shawn-kiser/"> <img src="https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin&labelColor=grey"></a>
+<a href="https://www.codefactor.io/repository/github/slkiser/acousticlevitation"><img src="https://www.codefactor.io/repository/github/slkiser/acousticlevitation/badge" alt="CodeFactor" /></a> <img alt="GitHub" src="https://img.shields.io/github/license/slkiser/acousticLevitation"> <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fslkiser%2FacousticLevitation&label=Hits&icon=github&color=%23c5b3e6&message=&style=flat&tz=UTC">
+ <img src="https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin&labelColor=grey"></a>
 
 This repository implements the matrix method used in the publication ["Matrix Method for Acoustic Levitation Simulation"](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation). Specifically, the results of Section II are written in Python, which describes an acoustic levitator composed of only one circular flat transducer (and with a hole if needed) and one planar reflector.
 
