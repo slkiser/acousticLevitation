@@ -6,12 +6,22 @@
 
 This repository implements the matrix method used in the publication ["Matrix Method for Acoustic Levitation Simulation"](https://www.researchgate.net/publication/224254694_Matrix_Method_for_Acoustic_Levitation_Simulation). Specifically, the results of Section II are written in Python, which describes an acoustic levitator composed of only one circular flat transducer (and with a hole if needed) and one planar reflector.
 
-This [README](README.md) consists of an introduction and theory which derives the **Rayleigh integral equation** used in the publication. This integral is then numerically resolved using the matrix method used in the publication. The matrix method offers an advantage over traditional [numerical integration](https://en.wikipedia.org/wiki/Numerical_integration) for two-dimensional (2D) problems, e.g., the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule) (1st order approximation) & [Simpson's rule](https://en.wikipedia.org/wiki/Simpson%27s_rule) (2nd order approximation), by obtaining a higher order of accuracy at a lower computation cost.
+<table>
+<tr>
+<td width="67%" valign="center">
+<p>This <a href="README.md">README</a> consists of an introduction and theory which derives the <strong>Rayleigh integral equation</strong> used in the publication. This integral is then numerically resolved using the matrix method used in the publication. The matrix method offers an advantage over traditional <a href="https://en.wikipedia.org/wiki/Numerical_integration">numerical integration</a> for two-dimensional (2D) problems, e.g., the <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule</a> (1st order approximation) &amp; <a href="https://en.wikipedia.org/wiki/Simpson%27s_rule">Simpson's rule</a> (2nd order approximation), by obtaining a higher order of accuracy at a lower computation cost.</p>
+<p><strong>Attribution Note:</strong> The core Python implementation of the matrix method in this repository is based on the work of <a href="https://gitlab.com/ss32/acoustic-levitation">Scott Sexton (ss32)</a>. This repository extends that original work by adding logic for transducers with holes, providing detailed documentation, and adding a validation case against experimental literature.</p>
+<p>If you use this extended code/documentation, please cite this work:</p>
+<blockquote>
+<p>[1] S. L. Kiser, <em>Matrix method in Python for acoustic levitation simulations</em>. [Online]. Available: <a href="https://github.com/slkiser/acousticLevitation">https://github.com/slkiser/acousticLevitation</a></p>
+</blockquote>
+</td>
+<td width="33%" valign="center" align="center">
+<img src="https://shawnkiser.com/acoustic_levitation/acoustic_levitation_demo.webp" alt="Acoustic levitation demo" width="260">
+</td>
+</tr>
+</table>
 
-**Attribution Note:** The core Python implementation of the matrix method in this repository is based on the work of [Scott Sexton (ss32)](https://gitlab.com/ss32/acoustic-levitation). This repository extends that original work by adding logic for transducers with holes, providing detailed documentation, and adding a validation case against experimental literature.
-
-If you use this extended code/documentation, please cite this work:
-> [1] S. L. Kiser, Matrix method in Python for acoustic levitation simulations. [Online]. Available: https://github.com/slkiser/acousticLevitation
 
 ## Introduction
 Acoustics is a field that has ties to mechanics and fluid dynamics. For solid mechanics, a phenomenological approach to vibration in solids is adequate to describe modal shapes and eigenfrequencies. However, it is not adequate for relating mechanical vibrations to noise radiation and transmission. Therefore, the interaction of sound waves and the vibration of solids requires a fundamental wave approach. Consider the following:
@@ -86,7 +96,7 @@ R_{-}=\sqrt{\left(x-x'\right)^{2}+\left(y-y'\right)^{2}+\left(z+z'_{-}\right)^{2
 \end{array}
 ```
 
-with $$z'_{+}$$ and $$z'_{-}$$ being small positive and negative perturbations in the $$Z$$ direction. This [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) has a zero gradient on the boundary of $$z=0$$:
+with $`z^{\prime}_{+}`$ and $`z^{\prime}_{-}`$ being small positive and negative perturbations in the $`Z`$ direction. This [Green's function](https://en.wikipedia.org/wiki/Green%27s_function) has a zero gradient on the boundary of $`z=0`$:
 
 ```math
 \left.\frac{\partial G\left(\mathbf{r} \mid \mathbf{r}'\right)}{\partial z'}\right|_{\{z'_{+}, z'_{-}\}\rightarrow 0}=0
